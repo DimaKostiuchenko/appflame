@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  # =========================
+  # Nginx
+  # =========================
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"          # HTTP
+      - "443:443"        # HTTPS if SSL certs mounted
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./backend:/var/www:ro
+      - ./nginx/ssl:/etc/nginx/certs:ro   # optional HTTPS
+    depends_on:
+      - backend
+      - frontend
+
+  # =========================
+  # Laravel backend (PHP-FPM)
+  # =========================
+  backend:
+    build:
+      context: ./backend
+      args:
+        APP_ENV: production
+    container_name: laravel
+    working_dir: /var/www
+    env_file:
+      - ./backend/.env.production
+    volumes:
+      - ./backend:/var/www:ro   # readonly in prod
+    restart: always
+
+  # =========================
+  # Nuxt frontend (built output)
+  # =========================
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NODE_ENV: production
+    container_name: nuxt
+    working_dir: /app
+    ports:
+      - "3000:3000"    # optional, mostly Nginx proxies
+    volumes:
+      - ./frontend/.output:/app/.output:ro
+    environment:
+      - NODE_ENV=production
+    restart: always
