@@ -1,41 +1,54 @@
 # ===============================
-# Composer / vendor stage
+# STAGE 1: Base (Minimal)
 # ===============================
-FROM composer:2 AS vendor
+FROM php:8.4-fpm-alpine AS base
 
-WORKDIR /app
-COPY composer.json composer.lock ./
-
-# Install prod dependencies only
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# ===============================
-# PHP-FPM stage
-# ===============================
-FROM php:8.3-fpm-alpine
-
-ARG APP_ENV=production
-
-# Install PHP extensions
-RUN apk add --no-cache icu-dev libzip-dev oniguruma-dev bash \
-    && docker-php-ext-install intl pdo_mysql zip mbstring opcache
+# Install only system dependencies for mbstring
+# pdo_mysql usually has no extra dependencies in this Alpine image
+RUN apk add --no-cache oniguruma-dev \
+    && docker-php-ext-install pdo_mysql mbstring
 
 WORKDIR /var/www
 
-# Copy code
-COPY . .
+# ===============================
+# STAGE 2: Development
+# ===============================
+FROM base AS development
+# We don't COPY code here because we use Volumes in docker-compose.yml 
+# for real-time local development.
+CMD ["php-fpm"]
 
-# Copy vendor from previous stage
+# ===============================
+# STAGE 3: Vendor (Build Helper)
+# ===============================
+FROM composer:2 AS vendor
+WORKDIR /app
+
+# Copy only composer files first to leverage Docker layer caching
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# ===============================
+# STAGE 4: Production Runtime
+# ===============================
+FROM base AS production
+ENV APP_ENV=production
+
+# 1. Copy dependencies from vendor stage
 COPY --from=vendor /app/vendor ./vendor
 
-# Pre-generate caches for read-only code
-RUN php artisan config:cache \
- && php artisan route:cache \
- && php artisan view:cache
+# 2. Copy the actual application code
+COPY . .
 
-# Set permissions for storage
+# 3. Set up directory permissions for Laravel
 RUN mkdir -p storage/framework/{sessions,views,cache} \
- && chown -R www-data:www-data storage bootstrap/cache
+    && chown -R www-data:www-data storage bootstrap/cache
+
+# 4. Production optimizations
+# Note: These are safe here because this stage is only triggered by the production target
+RUN php artisan config:cache \
+    && php artisan route:cache \
+    && php artisan view:cache
 
 EXPOSE 9000
 CMD ["php-fpm"]

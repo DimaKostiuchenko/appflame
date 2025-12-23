@@ -1,0 +1,172 @@
+---
+alwaysApply: true
+---
+
+# Test-Driven Development (TDD) Workflow
+
+## TDD Principles
+This project follows strict Test-Driven Development (TDD) practices. All code changes must follow the Red-Green-Refactor cycle.
+
+## TDD Workflow (Red-Green-Refactor)
+
+### 1. RED Phase - Write Failing Test First
+- **ALWAYS write the test BEFORE writing any implementation code**
+- The test should describe the desired behavior clearly
+- The test must fail for the right reason (not because of syntax errors)
+- Use descriptive test method names that explain what is being tested
+- Example: `test_user_can_create_event_with_valid_data()`, `test_event_creation_requires_authentication()`
+
+### 2. GREEN Phase - Write Minimal Implementation
+- Write the **minimum code necessary** to make the test pass
+- Do not add extra features or optimizations at this stage
+- Focus only on making the current test pass
+- Avoid premature abstraction or over-engineering
+
+### 3. REFACTOR Phase - Improve Code Quality
+- Once tests are passing, refactor the code for clarity and maintainability
+- Ensure all tests still pass after refactoring
+- Improve naming, extract methods, reduce duplication
+- Run tests after each refactoring step
+
+## Implementation Rules
+
+### When Adding New Features
+1. **Start with a test**: Create a test file first using `php artisan make:test --phpunit FeatureNameTest`
+2. **Write the test**: Define the expected behavior in the test
+3. **Run the test**: Verify it fails (RED)
+4. **Write implementation**: Add minimal code to pass the test
+5. **Run the test**: Verify it passes (GREEN)
+6. **Refactor**: Improve code quality while keeping tests green
+7. **Repeat**: Continue with next test case
+
+### When Fixing Bugs
+1. **Write a failing test** that reproduces the bug
+2. **Run the test** to confirm it fails (RED)
+3. **Fix the bug** with minimal changes
+4. **Run the test** to confirm it passes (GREEN)
+5. **Refactor** if needed
+
+### When Refactoring Existing Code
+1. **Ensure existing tests cover the code** being refactored
+2. **Run all tests** to establish baseline (all should pass)
+3. **Refactor the code**
+4. **Run all tests** to ensure nothing broke
+5. **Add tests** if new edge cases are discovered
+
+## Test Structure
+
+### Feature Tests (Preferred)
+- Most tests should be feature tests (test the full request/response cycle)
+- Use `php artisan make:test --phpunit FeatureNameTest`
+- Test from the user's perspective (HTTP requests, responses)
+- Use factories for test data: `User::factory()->create()`
+
+### Unit Tests (When Appropriate)
+- Use unit tests for isolated business logic
+- Use `php artisan make:test --phpunit --unit UnitNameTest`
+- Mock external dependencies
+
+### Test Naming Conventions
+- Use descriptive names: `test_user_can_create_event()`
+- Use snake_case for test method names
+- Group related tests in the same test class
+
+## Test Coverage Requirements
+
+### What to Test
+- **Happy paths**: Normal, expected behavior
+- **Failure paths**: Error conditions, validation failures
+- **Edge cases**: Boundary conditions, empty data, null values
+- **Security**: Authentication, authorization, input validation
+- **Idempotency**: Duplicate requests, race conditions
+
+### Test Assertions
+- Use specific assertions: `assertStatus(201)` not just `assertSuccessful()`
+- Verify response structure: `assertJsonStructure()`
+- Check database state: `assertDatabaseHas()`, `assertDatabaseMissing()`
+- Verify side effects: emails sent, jobs queued, etc.
+
+## Running Tests
+
+### During Development
+- **Run tests frequently**: After each small change
+- **Run specific test**: `php artisan test --filter=testName`
+- **Run test file**: `php artisan test tests/Feature/EventTest.php`
+- **Run all tests**: `php artisan test`
+
+### Before Committing
+- All tests must pass
+- Run the full test suite: `php artisan test`
+- Ensure no test warnings or deprecations
+
+## Code Changes Without Tests
+
+### Prohibited Actions
+- **NEVER** write implementation code without a corresponding test
+- **NEVER** skip writing tests to "save time"
+- **NEVER** delete or comment out failing tests
+- **NEVER** write tests after implementation (this is not TDD)
+
+### Exception Cases
+- Configuration files (config/, .env)
+- Database migrations (tested via feature tests)
+- View files (tested via feature tests that render them)
+- Simple getters/setters (if trivial, but prefer testing)
+
+## Test-Driven Code Review Checklist
+
+Before considering code complete:
+- [ ] Tests were written first (RED phase)
+- [ ] Implementation makes tests pass (GREEN phase)
+- [ ] Code was refactored (REFACTOR phase)
+- [ ] All tests pass
+- [ ] Tests cover happy paths, failure paths, and edge cases
+- [ ] Test names clearly describe what they test
+- [ ] No test code duplication (use setUp, factories, helpers)
+
+## Example TDD Flow
+
+### Step 1: Write Failing Test
+```php
+public function test_user_can_create_event(): void
+{
+    $user = User::factory()->create();
+    $token = $user->createToken('test')->plainTextToken;
+    
+    $response = $this->withHeader('Authorization', "Bearer {$token}")
+        ->postJson('/api/v1/events', [
+            'type' => 'page_view',
+            'ts' => '2024-01-15T10:30:00.000Z',
+            'session_id' => 'session-123',
+        ]);
+    
+    $response->assertStatus(201);
+    $this->assertDatabaseHas('events', [
+        'type' => 'page_view',
+        'session_id' => 'session-123',
+    ]);
+}
+```
+
+### Step 2: Run Test (Should Fail - RED)
+```bash
+php artisan test --filter=test_user_can_create_event
+```
+
+### Step 3: Write Minimal Implementation (GREEN)
+- Create controller, route, model, etc.
+- Make test pass with minimal code
+
+### Step 4: Refactor (REFACTOR)
+- Extract validation to Form Request
+- Improve error handling
+- Add comments/documentation
+- Ensure tests still pass
+
+## Integration with Existing Rules
+
+- Follow all Laravel Boost guidelines
+- Use PHPUnit (not Pest) for all tests
+- Use factories for test data
+- Run `vendor/bin/pint --dirty` after code changes
+- Use `php artisan make:test` to create test files

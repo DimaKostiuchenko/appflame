@@ -123,4 +123,17 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | API Token
+    |--------------------------------------------------------------------------
+    |
+    | This token is used for API authentication. It should be set in your
+    | .env file as API_TOKEN. The frontend will use this token in the
+    | Authorization: Bearer <token> header for all API requests.
+    |
+    */
+
+    'api_token' => env('API_TOKEN'),
+
 ];
