@@ -8,7 +8,7 @@ use DateTimeInterface;
 
 class GetTodayStatisticsAction
 {
-    public static function handle(DateTimeInterface $date): array
+    public function handle(DateTimeInterface $date): array
     {
         $start = $date->copy()->startOfDay();
         $end = $start->copy()->addDay();

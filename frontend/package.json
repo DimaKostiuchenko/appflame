@@ -7,9 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "format": "prettier --write \"**/*.{vue,js,ts,json,css}\"",
-    "format:check": "prettier --check \"**/*.{vue,js,ts,json,css}\""
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "chart.js": "^4.4.0",

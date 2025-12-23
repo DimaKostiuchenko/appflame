@@ -26,4 +26,5 @@ class Event extends Model
     {
         return EventType::values();
     }
+
 }
