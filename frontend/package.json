@@ -7,11 +7,21 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "format": "prettier --write \"**/*.{vue,js,ts,json,css}\"",
+    "format:check": "prettier --check \"**/*.{vue,js,ts,json,css}\""
   },
   "dependencies": {
+    "chart.js": "^4.4.0",
     "nuxt": "^3.20.2",
+    "reka-ui": "^2.7.0",
     "vue": "^3.5.25",
+    "vue-chartjs": "^5.2.0",
     "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "@types/node": "^25.0.3",
+    "prettier": "^3.7.4"
   }
 }

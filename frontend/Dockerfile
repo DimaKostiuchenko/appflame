@@ -1,36 +1,41 @@
 # ===============================
-# Build stage
+# STAGE 1: Base (Shared)
 # ===============================
-FROM node:20-alpine AS build
-
+FROM node:20-alpine AS base
 WORKDIR /app
 
+# Copy package files first to cache the npm install layer
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 
+# Copy the rest of your source code
 COPY . .
 
-ARG NODE_ENV=production
-RUN if [ "$NODE_ENV" = "production" ]; then \
-      npm run build; \
-    fi
+# ===============================
+# STAGE 2: Development (Stop here for Local Dev)
+# ===============================
+FROM base AS development
+ENV NODE_ENV=development
+
+# Nuxt dev server with hot-reload enabled
+EXPOSE 3000
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
 
 # ===============================
-# Runtime stage
+# STAGE 3: Build (Production Output)
 # ===============================
-FROM node:20-alpine
+FROM base AS build
+RUN npm run build
 
+# ===============================
+# STAGE 4: Production Runtime
+# ===============================
+FROM node:20-alpine AS production
 WORKDIR /app
-ARG NODE_ENV=production
-ENV NODE_ENV=$NODE_ENV
+ENV NODE_ENV=production
 
-# Copy build output
-COPY --from=build /app/.output ./
+# Only copy the final built output from the build stage
+COPY --from=build /app/.output .output
 
 EXPOSE 3000
-
-CMD if [ "$NODE_ENV" = "production" ]; then \
-      node .output/server/index.mjs; \
-    else \
-      npm run dev -- --host 0.0.0.0; \
-    fi
+CMD ["node", ".output/server/index.mjs"]
