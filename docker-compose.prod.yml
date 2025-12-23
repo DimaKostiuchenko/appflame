@@ -1,53 +1,36 @@
 version: "3.9"
 
 services:
-  # =========================
-  # Nginx
-  # =========================
   nginx:
     image: nginx:alpine
     container_name: nginx
     ports:
-      - "80:80"          # HTTP
-      - "443:443"        # HTTPS if SSL certs mounted
+      - "80:80"
+      - "443:443"
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./backend:/var/www:ro
-      - ./nginx/ssl:/etc/nginx/certs:ro   # optional HTTPS
+      - ./nginx/ssl:/etc/nginx/certs:ro
     depends_on:
       - backend
       - frontend
+    restart: always
 
-  # =========================
-  # Laravel backend (PHP-FPM)
-  # =========================
   backend:
     build:
       context: ./backend
-      args:
-        APP_ENV: production
+      target: production  # Uses the optimized stage with caches
     container_name: laravel
-    working_dir: /var/www
+    # No volume mount here! The code is inside the image.
     env_file:
       - ./backend/.env.production
-    volumes:
-      - ./backend:/var/www:ro   # readonly in prod
     restart: always
 
-  # =========================
-  # Nuxt frontend (built output)
-  # =========================
   frontend:
     build:
       context: ./frontend
-      args:
-        NODE_ENV: production
+      target: production  # Uses the stage that copies .output
     container_name: nuxt
-    working_dir: /app
-    ports:
-      - "3000:3000"    # optional, mostly Nginx proxies
-    volumes:
-      - ./frontend/.output:/app/.output:ro
+    # No volume mount here! The .output folder is built into the image.
     environment:
       - NODE_ENV=production
     restart: always
