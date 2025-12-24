@@ -19,9 +19,29 @@ WORKDIR /var/www
 # STAGE 2: Development
 # ===============================
 FROM base AS development
+
+# Install Composer for dependency management
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Create entrypoint script to install dependencies if needed
+RUN echo '#!/bin/sh' > /entrypoint.sh && \
+    echo 'set -e' >> /entrypoint.sh && \
+    echo 'if [ ! -d "vendor" ] && [ -f "composer.json" ]; then' >> /entrypoint.sh && \
+    echo '  echo "Installing Composer dependencies..."' >> /entrypoint.sh && \
+    echo '  composer install --no-interaction || true' >> /entrypoint.sh && \
+    echo 'fi' >> /entrypoint.sh && \
+    echo 'if [ ! -f "database/database.sqlite" ]; then' >> /entrypoint.sh && \
+    echo '  echo "Creating SQLite database file..."' >> /entrypoint.sh && \
+    echo '  mkdir -p database' >> /entrypoint.sh && \
+    echo '  touch database/database.sqlite' >> /entrypoint.sh && \
+    echo '  chmod 664 database/database.sqlite' >> /entrypoint.sh && \
+    echo 'fi' >> /entrypoint.sh && \
+    echo 'exec php-fpm' >> /entrypoint.sh && \
+    chmod +x /entrypoint.sh
+
 # We don't COPY code here because we use Volumes in docker-compose.yml 
 # for real-time local development.
-CMD ["php-fpm"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 # ===============================
 # STAGE 3: Vendor (Build Helper)
