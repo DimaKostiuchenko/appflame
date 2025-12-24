@@ -36,6 +36,25 @@ appflame/
 - Git
 
 
+## RUN project 
+
+Clone project
+```
+Git clone git@github.com:DimaKostiuchenko/appflame.git
+```
+
+Create env and build containers
+```
+cp frontend/.env.example frontend/.env &&
+cp backend/.env.example backend/.env &&
+docker-compose -f docker-compose.dev.yml up --build
+```
+
+Run migrations
+```
+docker compose -f docker-compose.dev.yml exec backend php artisan migrate
+```
+
 ## API Authentication
 
 This application uses a custom API token authentication system. 
