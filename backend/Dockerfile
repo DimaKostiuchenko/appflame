@@ -11,8 +11,7 @@ RUN apk add --no-cache \
     sqlite-dev \
     && docker-php-ext-install \
     mbstring \
-    pdo_sqlite \
-    sqlite3
+    pdo_sqlite 
 
 WORKDIR /var/www
 
