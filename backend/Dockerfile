@@ -5,8 +5,14 @@ FROM php:8.4-fpm-alpine AS base
 
 # Install only system dependencies for mbstring
 # pdo_mysql usually has no extra dependencies in this Alpine image
-RUN apk add --no-cache oniguruma-dev \
-    && docker-php-ext-install pdo_mysql mbstring
+# Optimized for SQLite + Laravel 11/12
+RUN apk add --no-cache \
+    oniguruma-dev \
+    sqlite-dev \
+    && docker-php-ext-install \
+    mbstring \
+    pdo_sqlite \
+    sqlite3
 
 WORKDIR /var/www
 
