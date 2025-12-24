@@ -72,6 +72,9 @@ API_TOKEN=4700f3c9-3190-4716-a768-0255a124f3aa
 NUXT_PUBLIC_API_TOKEN=4700f3c9-3190-4716-a768-0255a124f3aa
 ```
 
+###Execute to run containers 
+docker compose -f docker-compose.dev.yml up  
+
 ### Using the API Token
 
 All API requests must include the token in the `Authorization` header:

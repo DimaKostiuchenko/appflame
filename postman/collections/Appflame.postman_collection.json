@@ -104,43 +104,16 @@
       }
     ]
   },
-  "event": [
-    {
-      "listen": "prerequest",
-      "script": {
-        "id": "c99aff64-b907-4450-8439-9b7264e0b8ea",
-        "type": "text/javascript",
-        "packages": {},
-        "requests": {},
-        "exec": [
-          ""
-        ]
-      }
-    },
-    {
-      "listen": "test",
-      "script": {
-        "id": "4a438106-e936-4efa-82ab-e50766eab048",
-        "type": "text/javascript",
-        "packages": {},
-        "requests": {},
-        "exec": [
-          ""
-        ]
-      }
-    }
-  ],
   "variable": [
     {
-      "id": "1e366cd2-6629-4643-8f16-39376520c42e",
+      "id": "c4c5c88a-fada-4456-a9a1-cbaad8d1565f",
       "key": "api_token",
       "value": ""
     },
     {
-      "id": "e6a4d7bb-34ac-419b-b130-afb49eaf2537",
+      "id": "0145f4c9-b1eb-4a20-9b4b-d2954034491a",
       "key": "base_url",
-      "value": "",
-      "type": "default"
+      "value": ""
     }
   ]
 }
