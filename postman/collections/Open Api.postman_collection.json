@@ -1,0 +1,155 @@
+{
+  "info": {
+    "_postman_id": "c79a75aa-be3d-466b-b8da-bc1ad8ad06ec",
+    "name": "Open Api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Sora",
+      "item": [
+        {
+          "name": "Get videos",
+          "id": "0776b53b-5bce-4f8b-b297-dc6d4e497390",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{open_api_url}}videos",
+              "host": [
+                "{{open_api_url}}videos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create task",
+          "id": "05930676-a84f-44ea-88be-72eebd236d5e",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{open_api_url}}/videos/",
+              "host": [
+                "{{open_api_url}}"
+              ],
+              "path": [
+                "videos",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Poll task",
+          "id": "24b27d8b-9c20-4b8a-a8e9-1059efd0d8a2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{open_api_url}}/videos/video_68ecfff0fef0819893120793a06ba5b700fe2d4f62f6be90",
+              "host": [
+                "{{open_api_url}}"
+              ],
+              "path": [
+                "videos",
+                "video_68ecfff0fef0819893120793a06ba5b700fe2d4f62f6be90"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Download",
+          "id": "4f220db5-db07-4502-9d9d-ab3a14b17bfc",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{open_api_url}}/videos/video_68ee57ea0aa88198a5b004783c070faa00cdfa609ad61bcc/content",
+              "host": [
+                "{{open_api_url}}"
+              ],
+              "path": [
+                "videos",
+                "video_68ee57ea0aa88198a5b004783c070faa00cdfa609ad61bcc",
+                "content"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "c6d1a00e-58f7-4d5d-b189-1c7a0316a68a",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{open_api_url}}/videos/video_68ecfff0fef0819893120793a06ba5b700fe2d4f62f6be90",
+              "host": [
+                "{{open_api_url}}"
+              ],
+              "path": [
+                "videos",
+                "video_68ecfff0fef0819893120793a06ba5b700fe2d4f62f6be90"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "df60f59f-3efd-4de1-a112-880efb409ecd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "44c7f3a8-7cc2-450a-938e-2f86a7f2d2f0",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "1caa7054-1f05-42cf-a11f-6102396b1631",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "2b500608-6dab-4b38-beae-accdc8574ddf",
+      "key": "token",
+      "value": ""
+    },
+    {
+      "id": "96d9d704-bd0b-4df2-a43e-1bf1c2c4acf7",
+      "key": "open_api_url",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,4216 @@
+{
+  "info": {
+    "_postman_id": "dfef3a00-77fd-4d8f-9d30-233411cbfc93",
+    "name": "My Collection",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "2fa",
+      "item": [
+        {
+          "name": "Confirmed 2fa",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "dc61bb62-192f-460d-8949-d907294c5f73",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"143482\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseURL}}/user/confirmed-two-factor-authentication",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "user",
+                "confirmed-two-factor-authentication"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Confirm Password",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "4e510221-3340-44e1-9b6f-3ee27e3c01b2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"password\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseURL}}/user/confirm-password",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "user",
+                "confirm-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Enable 2fa",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e1374137-fa35-44b1-8f33-0bd1d2d84005",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "2ad77a87-2735-4352-8756-1a82fd4533a6",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"password\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseURL}}/user/two-factor-authentication",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "user",
+                "two-factor-authentication"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Disable",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "cc93f736-12e0-4aba-b96c-398e29baf735",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"password\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseURL}}/user/two-factor-authentication",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "user",
+                "two-factor-authentication"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get QR code",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "48d79a90-7538-4452-a15a-8fdc71e9be5e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"password\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseURL}}/user/two-factor-qr-code",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "user",
+                "two-factor-qr-code"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Recovery Codes",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "28ee1e0b-d22b-41dc-8004-49f0d8a55596",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "\n"
+            },
+            "url": {
+              "raw": "{{baseURL}}/user/two-factor-recovery-codes",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "user",
+                "two-factor-recovery-codes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Regenerate Recovery Codes Copy",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "7b074264-450e-4259-ad1d-c4f52b7a3782",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "\n"
+            },
+            "url": {
+              "raw": "{{baseURL}}/user/two-factor-recovery-codes",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "user",
+                "two-factor-recovery-codes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Chalenge Pass 2fa",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "6ac95602-2b50-470b-a9e0-869e7888622e",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"code\": \"542147\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseURL}}/two-factor-challenge",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "two-factor-challenge"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "92d6f9ad-04d1-4555-9c84-136ffc4123bd"
+    },
+    {
+      "name": "Workspaces",
+      "item": [
+        {
+          "name": "Settings",
+          "item": [
+            {
+              "name": "Show",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "cf921373-7531-4fb1-b3c4-1f7f4ce959ec",
+                    "exec": [
+                      "// Pre-request Script of POST /login",
+                      "",
+                      "// CHANGE: Get the variable from the GLOBAL scope",
+                      "const token = pm.globals.get('current_xsrf_token');",
+                      "console.log(token);",
+                      "if (token) {",
+                      "    // Set the required header using the decoded token value",
+                      "    pm.request.headers.add({",
+                      "        key: 'X-XSRF-TOKEN',",
+                      "        value: token",
+                      "    });",
+                      "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                      "} else {",
+                      "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "bc689a78-0727-48bd-9144-d49c3f9c6264",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/api/settings",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "settings"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "cf921373-7531-4fb1-b3c4-1f7f4ce959ec",
+                    "exec": [
+                      "// Pre-request Script of POST /login",
+                      "",
+                      "// CHANGE: Get the variable from the GLOBAL scope",
+                      "const token = pm.globals.get('current_xsrf_token');",
+                      "console.log(token);",
+                      "if (token) {",
+                      "    // Set the required header using the decoded token value",
+                      "    pm.request.headers.add({",
+                      "        key: 'X-XSRF-TOKEN',",
+                      "        value: token",
+                      "    });",
+                      "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                      "} else {",
+                      "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "0b2e063e-d778-4439-a861-f5f0d22d449b",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/api/settings",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "settings"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "f1d5de03-8228-44cc-b04b-b5a52f309841"
+        },
+        {
+          "name": "Switch",
+          "item": [
+            {
+              "name": "Show",
+              "id": "9571b7a3-4b85-4d3f-9d86-c1ee3e7cc93e",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/api/switch",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "switch"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "aee556eb-a420-41ee-8c8a-7f71ec685026",
+                    "exec": [
+                      "// Pre-request Script of POST /login",
+                      "",
+                      "// CHANGE: Get the variable from the GLOBAL scope",
+                      "const token = pm.globals.get('current_xsrf_token');",
+                      "console.log(token);",
+                      "if (token) {",
+                      "    // Set the required header using the decoded token value",
+                      "    pm.request.headers.add({",
+                      "        key: 'X-XSRF-TOKEN',",
+                      "        value: token",
+                      "    });",
+                      "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                      "} else {",
+                      "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "27b9899a-4512-4358-bf6a-d9e9b0b06c09",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Accept-Encoding",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\":\"New Name\",\n    \"slug\":\"new-slug\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/switch/1",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "switch",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "a772d925-b8bf-43cb-8104-f4e68945f915"
+        },
+        {
+          "name": "Teams",
+          "item": [
+            {
+              "name": "Team",
+              "id": "52916732-65cd-4630-a025-78a06916fafd",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/api/team",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "team"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Invitations",
+              "id": "9af03b14-9f3f-417b-b24e-55525c4a29c6",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/api/invitations",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "invitations"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Invite member",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "6ce7aba7-b99b-43f9-bf5d-0e64d46cf873",
+                    "exec": [
+                      "// Pre-request Script of POST /login",
+                      "",
+                      "// CHANGE: Get the variable from the GLOBAL scope",
+                      "const token = pm.globals.get('current_xsrf_token');",
+                      "console.log(token);",
+                      "if (token) {",
+                      "    // Set the required header using the decoded token value",
+                      "    pm.request.headers.add({",
+                      "        key: 'X-XSRF-TOKEN',",
+                      "        value: token",
+                      "    });",
+                      "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                      "} else {",
+                      "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "6f9f052f-6170-4765-ba41-c3b8f14ed01c",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\":\"chozaf@gmail.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/team/invite",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "team",
+                    "invite"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Accept join",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "6ce7aba7-b99b-43f9-bf5d-0e64d46cf873",
+                    "exec": [
+                      "// Pre-request Script of POST /login",
+                      "",
+                      "// CHANGE: Get the variable from the GLOBAL scope",
+                      "const token = pm.globals.get('current_xsrf_token');",
+                      "console.log(token);",
+                      "if (token) {",
+                      "    // Set the required header using the decoded token value",
+                      "    pm.request.headers.add({",
+                      "        key: 'X-XSRF-TOKEN',",
+                      "        value: token",
+                      "    });",
+                      "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                      "} else {",
+                      "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "55583636-aaa7-42cd-9ec0-8ae84c544663",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"password\":\"!!!111QQQqqq\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/team/invitation/b0d5f530-31c1-44bd-be4c-47e39dd31e65",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "team",
+                    "invitation",
+                    "b0d5f530-31c1-44bd-be4c-47e39dd31e65"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Remove Member",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "6ce7aba7-b99b-43f9-bf5d-0e64d46cf873",
+                    "exec": [
+                      "// Pre-request Script of POST /login",
+                      "",
+                      "// CHANGE: Get the variable from the GLOBAL scope",
+                      "const token = pm.globals.get('current_xsrf_token');",
+                      "console.log(token);",
+                      "if (token) {",
+                      "    // Set the required header using the decoded token value",
+                      "    pm.request.headers.add({",
+                      "        key: 'X-XSRF-TOKEN',",
+                      "        value: token",
+                      "    });",
+                      "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                      "} else {",
+                      "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "d10341fc-fb2c-4263-a818-bce566264bd9",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"password\":\"!!!111QQQqqq\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/team/27",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "team",
+                    "27"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "aee556eb-a420-41ee-8c8a-7f71ec685026",
+                    "exec": [
+                      "// Pre-request Script of POST /login",
+                      "",
+                      "// CHANGE: Get the variable from the GLOBAL scope",
+                      "const token = pm.globals.get('current_xsrf_token');",
+                      "console.log(token);",
+                      "if (token) {",
+                      "    // Set the required header using the decoded token value",
+                      "    pm.request.headers.add({",
+                      "        key: 'X-XSRF-TOKEN',",
+                      "        value: token",
+                      "    });",
+                      "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                      "} else {",
+                      "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "d3dd3896-55dc-4412-8fa6-9e08e87bffe5",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/api/settings",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "settings"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "1d704b40-c781-48c2-a8bb-ec9558d290b6"
+        },
+        {
+          "name": "New Request",
+          "id": "e1a2cd4c-21aa-44fb-b46b-e0b2cd187e10",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ],
+      "id": "2aa0c07e-0fe2-4827-bf1c-e782a765cf06"
+    },
+    {
+      "name": "Brand Assets",
+      "item": [
+        {
+          "name": "Update",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "aee556eb-a420-41ee-8c8a-7f71ec685026",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "6d253029-157d-46d6-aff1-7fa3bafd2481",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\":\"New Name\",\n    \"slug\":\"new-slug\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/campaigns/18/brand-assets/brand-book",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "campaigns",
+                "18",
+                "brand-assets",
+                "brand-book"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show barandbook",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "aee556eb-a420-41ee-8c8a-7f71ec685026",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "45603830-0326-42e9-a34e-52d124b99343",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\":\"New Name\",\n    \"slug\":\"new-slug\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/campaigns/18/brand-assets/brand-book",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "campaigns",
+                "18",
+                "brand-assets",
+                "brand-book"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Campaign Brandbook",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "aee556eb-a420-41ee-8c8a-7f71ec685026",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "e7c1a36c-4d9f-43c7-aa4a-08dde69f0e09",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/Users/dmytro/Downloads/2023-brandbook.pdf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/campaigns/18/brand-assets/brand-book",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "campaigns",
+                "18",
+                "brand-assets",
+                "brand-book"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Campaign Logo",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "aee556eb-a420-41ee-8c8a-7f71ec685026",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "a897db44-23a1-4c3d-8f9f-7afe4fc0eb30",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/Users/dmytro/Downloads/project/pexels-pawel-fijalkowski-521807-1271147.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/campaigns/18/brand-assets/logo",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "campaigns",
+                "18",
+                "brand-assets",
+                "logo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Campaign Logo Copy",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "aee556eb-a420-41ee-8c8a-7f71ec685026",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "a53bf27a-b62e-43e3-becd-6aee8ce1e8a5",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/Users/dmytro/Downloads/project/pexels-pixabay-417173.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/campaigns/18/projects/16/brand-assets/logo",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "campaigns",
+                "18",
+                "projects",
+                "16",
+                "brand-assets",
+                "logo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Campaign logo",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "aee556eb-a420-41ee-8c8a-7f71ec685026",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "3d3249fd-83df-4bd8-a3fe-2d4f15e273d5",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/Users/dmytro/Downloads/2023-brandbook.pdf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/campaigns/18/brand-assets/brand-book",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "campaigns",
+                "18",
+                "brand-assets",
+                "brand-book"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "31583e9d-b2bd-4bf3-a5b4-6eb02061fddd"
+    },
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "CSRF",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9e79619e-b335-4474-bcfc-e647b2490d35",
+                "exec": [
+                  "// Post-request Script (Tests tab) of GET /sanctum/csrf-cookie",
+                  "",
+                  "const xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+                  "",
+                  "",
+                  "if (xsrfCookie) {",
+                  "    const decodedToken = decodeURIComponent(xsrfCookie);",
+                  "    ",
+                  "    // CHANGE: Set the variable to the GLOBAL scope",
+                  "    pm.globals.set('current_xsrf_token', decodedToken);",
+                  "",
+                  "    console.log('✅ New CSRF Token successfully saved to GLOBAL variable.',decodedToken);",
+                  "} else {",
+                  "    console.error('❌ XSRF-TOKEN cookie was not found in the response.');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "b8761883-4479-4ec9-bea3-1d1cc9f7ab86",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "00891e05-af03-4b08-b3a3-88336469e790",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/sanctum/csrf-cookie",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "sanctum",
+                "csrf-cookie"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                "exec": [
+                  "// Tests tab of POST /login",
+                  "const setCookie = pm.response.headers.get('Set-Cookie');",
+                  "",
+                  "if (setCookie) {",
+                  "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                  "    if (match) {",
+                  "        pm.globals.set(\"automationtool_session\", match[1]);",
+                  "        console.log(\"Saved session cookie:\", match[1]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "b5c42974-a5f2-4fba-bbe1-869dc5f3e49f",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/login",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login Member",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                "exec": [
+                  "// Tests tab of POST /login",
+                  "const setCookie = pm.response.headers.get('Set-Cookie');",
+                  "",
+                  "if (setCookie) {",
+                  "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                  "    if (match) {",
+                  "        pm.globals.set(\"automationtool_session\", match[1]);",
+                  "        console.log(\"Saved session cookie:\", match[1]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "6fdeec7e-6c5a-48ca-837a-33734291d576",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"chozaf@gmail.com\",\n  \"password\": \"!!!111QQQqqq\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/login",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "logout",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "ca68f552-996d-4ade-bd0c-247b74506945",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/logout",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Accounts",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "const sessionId = pm.globals.get(\"automationtool_session\");",
+                  "",
+                  "if (sessionId) {",
+                  "    const sessionCookie = `automationtool_session=${sessionId}`;",
+                  "    console.log(\"Using session cookie:\", sessionCookie);",
+                  "",
+                  "    pm.request.headers.add({",
+                  "        key: 'Cookie',",
+                  "        value: sessionCookie",
+                  "    });",
+                  "} else {",
+                  "    console.warn(\"No automationtool_session found in environment yet!\");",
+                  "}",
+                  "",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "1f35185b-060f-43e0-9707-587bee58cda3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"329712\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/accounts",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "accounts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Profile",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                "exec": [
+                  "// Tests tab of POST /login",
+                  "const setCookie = pm.response.headers.get('Set-Cookie');",
+                  "",
+                  "if (setCookie) {",
+                  "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                  "    if (match) {",
+                  "        pm.globals.set(\"automationtool_session\", match[1]);",
+                  "        console.log(\"Saved session cookie:\", match[1]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "83125222-b9d7-4240-9701-03e5d1a71f35",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/profile",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "1162cca7-f0ea-4fc1-86b4-68b4713b0473"
+    },
+    {
+      "name": "Timeline",
+      "item": [
+        {
+          "name": "Update Timeline Row",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "abb38468-bff9-4f60-b9ad-ae7b0f10c850",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "68203d93-c2e4-4c19-857c-121996a1c0bc",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "6c312c8a-3fe7-482c-a981-726f79103e02",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"index\": \"2\",\n    \"transitions\":{\"in\":\"SLIDE\",\"out\":\"SWIPE\"}\n   \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/content-items/15/timelines/1/rows/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "content-items",
+                "15",
+                "timelines",
+                "1",
+                "rows",
+                "1"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "Init Timeline Creation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "abb38468-bff9-4f60-b9ad-ae7b0f10c850",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "5ab782b2-7f0a-4924-90d5-7120d4a120d3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "92ba43dd-37eb-44bf-bc4e-1cff17232c10",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept-Charset",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"goal\": \"Create army shoe promodion video\",\n    \"benefits\": [\"Comfort for everyday wears\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/content-items/15/timelines/init",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "content-items",
+                "15",
+                "timelines",
+                "init"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "Generate AssetType",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "abb38468-bff9-4f60-b9ad-ae7b0f10c850",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "id": "49d5a4a1-e0e8-44c8-92a9-2790a729c827",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"asset_type\": \"AI_VIDEO\",\n    \"prompt\": \"A sleek futuristic gadget resting on a glass pedestal in a dark studio, illuminated by dramatic spotlights from above. The camera slowly circles around the object, capturing its metallic reflections and glowing edges. Soft mist drifts in the background, creating a cinematic, high-tech atmosphere. Ultra-realistic lighting, shallow depth of field, smooth camera motion, 16:9, 5 seconds, 24fps.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}:80/api/content-item-timelines/4/generate",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "port": "80",
+              "path": [
+                "api",
+                "content-item-timelines",
+                "4",
+                "generate"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "Get AssetType",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "abb38468-bff9-4f60-b9ad-ae7b0f10c850",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "1096ef5b-3572-4b24-8a0a-e36d558274c1",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "e1112681-7445-422d-b5c5-b5b53a7ed8ae",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"asset_type\": \"AI_VIDEO\",\n    \"prompt\": \"A sleek futuristic gadget resting on a glass pedestal in a dark studio, illuminated by dramatic spotlights from above. The camera slowly circles around the object, capturing its metallic reflections and glowing edges. Soft mist drifts in the background, creating a cinematic, high-tech atmosphere. Ultra-realistic lighting, shallow depth of field, smooth camera motion, 16:9, 5 seconds, 24fps.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/content-items/15/timelines/1/rows/1/assets/2",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "content-items",
+                "15",
+                "timelines",
+                "1",
+                "rows",
+                "1",
+                "assets",
+                "2"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "Upload AssetTypeType",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "abb38468-bff9-4f60-b9ad-ae7b0f10c850",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "61ed44ba-092d-46a6-859e-277aca58bbe1",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "e1f3f103-0597-4f84-b332-58a2060d2770",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/Users/dmytro/Downloads/Діаграма без назви.drawio (1).png"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/content-items/15/timelines/1/rows/1/assets/2/upload",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "content-items",
+                "15",
+                "timelines",
+                "1",
+                "rows",
+                "1",
+                "assets",
+                "2",
+                "upload"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "CSRF",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "697afbef-8271-45a9-9696-55ada853f647",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "fe23b1b8-9d8c-468f-b1c4-15db0c229ed6",
+                "exec": [
+                  "// Post-request Script (Tests tab) of GET /sanctum/csrf-cookie",
+                  "",
+                  "const xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+                  "",
+                  "if (xsrfCookie) {",
+                  "    const decodedToken = decodeURIComponent(xsrfCookie);",
+                  "    ",
+                  "    // CHANGE: Set the variable to the GLOBAL scope",
+                  "    pm.globals.set('current_xsrf_token', decodedToken);",
+                  "",
+                  "    console.log('✅ New CSRF Token successfully saved to GLOBAL variable.',decodedToken);",
+                  "} else {",
+                  "    console.error('❌ XSRF-TOKEN cookie was not found in the response.');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "5bc2742b-91e7-48dc-b7ba-caa4dc21cf1d",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/sanctum/csrf-cookie",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "sanctum",
+                "csrf-cookie"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                "exec": [
+                  "// Tests tab of POST /login",
+                  "const setCookie = pm.response.headers.get('Set-Cookie');",
+                  "",
+                  "if (setCookie) {",
+                  "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                  "    if (match) {",
+                  "        pm.globals.set(\"automationtool_session\", match[1]);",
+                  "        console.log(\"Saved session cookie:\", match[1]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "aff2455a-a02c-47ee-a045-649443a7b241",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/login",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "73548dd6-003a-4842-92bb-59b1b7010cd4"
+    },
+    {
+      "name": "TimelineRow",
+      "item": [],
+      "id": "f4528ed3-4ce2-4d27-b853-e27c673fbf1a"
+    },
+    {
+      "name": "AssetTypeTimelineRow",
+      "item": [],
+      "id": "71643e2f-dc2a-4902-847e-e3db2183ea23"
+    },
+    {
+      "name": "Campaigns",
+      "item": [],
+      "id": "b57ed06f-ad1d-4277-8b02-ce843ec7ae7a"
+    },
+    {
+      "name": "Ayrshare",
+      "item": [
+        {
+          "name": "Accounts",
+          "item": [
+            {
+              "name": "Get Accounts",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                    "exec": [
+                      "// Pre-request Script of POST /login",
+                      "",
+                      "// CHANGE: Get the variable from the GLOBAL scope",
+                      "const token = pm.globals.get('current_xsrf_token');",
+                      "console.log(token);",
+                      "if (token) {",
+                      "    // Set the required header using the decoded token value",
+                      "    pm.request.headers.add({",
+                      "        key: 'X-XSRF-TOKEN',",
+                      "        value: token",
+                      "    });",
+                      "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                      "} else {",
+                      "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                    "exec": [
+                      "// Tests tab of POST /login",
+                      "const setCookie = pm.response.headers.get('Set-Cookie');",
+                      "",
+                      "if (setCookie) {",
+                      "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                      "    if (match) {",
+                      "        pm.globals.set(\"automationtool_session\", match[1]);",
+                      "        console.log(\"Saved session cookie:\", match[1]);",
+                      "    }",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "a556699b-4c71-4b15-b55b-4530b1a3ca79",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/ayrshare/6/accounts",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ayrshare",
+                    "6",
+                    "accounts"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Account",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                    "exec": [
+                      "// Pre-request Script of POST /login",
+                      "",
+                      "// CHANGE: Get the variable from the GLOBAL scope",
+                      "const token = pm.globals.get('current_xsrf_token');",
+                      "console.log(token);",
+                      "if (token) {",
+                      "    // Set the required header using the decoded token value",
+                      "    pm.request.headers.add({",
+                      "        key: 'X-XSRF-TOKEN',",
+                      "        value: token",
+                      "    });",
+                      "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                      "} else {",
+                      "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                    "exec": [
+                      "// Tests tab of POST /login",
+                      "const setCookie = pm.response.headers.get('Set-Cookie');",
+                      "",
+                      "if (setCookie) {",
+                      "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                      "    if (match) {",
+                      "        pm.globals.set(\"automationtool_session\", match[1]);",
+                      "        console.log(\"Saved session cookie:\", match[1]);",
+                      "    }",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "da539429-e6c2-4731-9541-05d725cbe210",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/ayrshare/6/accounts",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ayrshare",
+                    "6",
+                    "accounts"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create Account",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                    "exec": [
+                      "// Pre-request Script of POST /login",
+                      "",
+                      "// CHANGE: Get the variable from the GLOBAL scope",
+                      "const token = pm.globals.get('current_xsrf_token');",
+                      "console.log(token);",
+                      "if (token) {",
+                      "    // Set the required header using the decoded token value",
+                      "    pm.request.headers.add({",
+                      "        key: 'X-XSRF-TOKEN',",
+                      "        value: token",
+                      "    });",
+                      "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                      "} else {",
+                      "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                    "exec": [
+                      "// Tests tab of POST /login",
+                      "const setCookie = pm.response.headers.get('Set-Cookie');",
+                      "",
+                      "if (setCookie) {",
+                      "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                      "    if (match) {",
+                      "        pm.globals.set(\"automationtool_session\", match[1]);",
+                      "        console.log(\"Saved session cookie:\", match[1]);",
+                      "    }",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "a9afa585-f47c-48d9-8580-e1c6c92d4e79",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/ayrshare/6//accounts",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ayrshare",
+                    "6",
+                    "",
+                    "accounts"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                    "exec": [
+                      "// Pre-request Script of POST /login",
+                      "",
+                      "// CHANGE: Get the variable from the GLOBAL scope",
+                      "const token = pm.globals.get('current_xsrf_token');",
+                      "console.log(token);",
+                      "if (token) {",
+                      "    // Set the required header using the decoded token value",
+                      "    pm.request.headers.add({",
+                      "        key: 'X-XSRF-TOKEN',",
+                      "        value: token",
+                      "    });",
+                      "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                      "} else {",
+                      "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                    "exec": [
+                      "// Tests tab of POST /login",
+                      "const setCookie = pm.response.headers.get('Set-Cookie');",
+                      "",
+                      "if (setCookie) {",
+                      "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                      "    if (match) {",
+                      "        pm.globals.set(\"automationtool_session\", match[1]);",
+                      "        console.log(\"Saved session cookie:\", match[1]);",
+                      "    }",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "cc17edc8-d1e9-4ece-a246-578a6fbf649d",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_name\": \"pinterest interest\"\n\n}"
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/ayrshare/6/accounts/2",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ayrshare",
+                    "6",
+                    "accounts",
+                    "2"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                    "exec": [
+                      "// Pre-request Script of POST /login",
+                      "",
+                      "// CHANGE: Get the variable from the GLOBAL scope",
+                      "const token = pm.globals.get('current_xsrf_token');",
+                      "console.log(token);",
+                      "if (token) {",
+                      "    // Set the required header using the decoded token value",
+                      "    pm.request.headers.add({",
+                      "        key: 'X-XSRF-TOKEN',",
+                      "        value: token",
+                      "    });",
+                      "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                      "} else {",
+                      "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                    "exec": [
+                      "// Tests tab of POST /login",
+                      "const setCookie = pm.response.headers.get('Set-Cookie');",
+                      "",
+                      "if (setCookie) {",
+                      "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                      "    if (match) {",
+                      "        pm.globals.set(\"automationtool_session\", match[1]);",
+                      "        console.log(\"Saved session cookie:\", match[1]);",
+                      "    }",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "7fad99fe-d5ac-4b3b-a9fd-7dd8f8d84bb5",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://localhost:3000",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_name\": \"pinterest interest\"\n\n}"
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/ayrshare/6/accounts/2",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ayrshare",
+                    "6",
+                    "accounts",
+                    "2"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "10469fce-425a-449f-8e8b-8b8b64198eb7"
+        },
+        {
+          "name": "Show Profile",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                "exec": [
+                  "// Tests tab of POST /login",
+                  "const setCookie = pm.response.headers.get('Set-Cookie');",
+                  "",
+                  "if (setCookie) {",
+                  "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                  "    if (match) {",
+                  "        pm.globals.set(\"automationtool_session\", match[1]);",
+                  "        console.log(\"Saved session cookie:\", match[1]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "5ecb87af-168f-46c4-b2a6-a3c0a66f7995",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/ayrshare/",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "ayrshare",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ceate Profile",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                "exec": [
+                  "// Tests tab of POST /login",
+                  "const setCookie = pm.response.headers.get('Set-Cookie');",
+                  "",
+                  "if (setCookie) {",
+                  "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                  "    if (match) {",
+                  "        pm.globals.set(\"automationtool_session\", match[1]);",
+                  "        console.log(\"Saved session cookie:\", match[1]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "8ce47327-cbf5-44b4-bffd-2923981070f9",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/ayrshare",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "ayrshare"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Profile",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                "exec": [
+                  "// Tests tab of POST /login",
+                  "const setCookie = pm.response.headers.get('Set-Cookie');",
+                  "",
+                  "if (setCookie) {",
+                  "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                  "    if (match) {",
+                  "        pm.globals.set(\"automationtool_session\", match[1]);",
+                  "        console.log(\"Saved session cookie:\", match[1]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "5fc14b83-84a5-4045-8ade-30d712b6e5ed",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/ayrshare/4",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "ayrshare",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Profile",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                "exec": [
+                  "// Tests tab of POST /login",
+                  "const setCookie = pm.response.headers.get('Set-Cookie');",
+                  "",
+                  "if (setCookie) {",
+                  "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                  "    if (match) {",
+                  "        pm.globals.set(\"automationtool_session\", match[1]);",
+                  "        console.log(\"Saved session cookie:\", match[1]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "4befb313-94eb-4483-aeb8-0ce2a32f0efc",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/ayrshare/4",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "ayrshare",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Webhook",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                "exec": [
+                  "// Tests tab of POST /login",
+                  "const setCookie = pm.response.headers.get('Set-Cookie');",
+                  "",
+                  "if (setCookie) {",
+                  "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                  "    if (match) {",
+                  "        pm.globals.set(\"automationtool_session\", match[1]);",
+                  "        console.log(\"Saved session cookie:\", match[1]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "68bda7cc-94ba-43d1-97b7-c36f0719512b",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"social\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/ayrshare/webhook",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "ayrshare",
+                "webhook"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Set webhook",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                "exec": [
+                  "// Tests tab of POST /login",
+                  "const setCookie = pm.response.headers.get('Set-Cookie');",
+                  "",
+                  "if (setCookie) {",
+                  "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                  "    if (match) {",
+                  "        pm.globals.set(\"automationtool_session\", match[1]);",
+                  "        console.log(\"Saved session cookie:\", match[1]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "2d1dfb57-0113-4d60-a825-c81d14be3205",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/ayrshare/set-webhook",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "ayrshare",
+                "set-webhook"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete webhook",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                "exec": [
+                  "// Tests tab of POST /login",
+                  "const setCookie = pm.response.headers.get('Set-Cookie');",
+                  "",
+                  "if (setCookie) {",
+                  "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                  "    if (match) {",
+                  "        pm.globals.set(\"automationtool_session\", match[1]);",
+                  "        console.log(\"Saved session cookie:\", match[1]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "1b6a2346-a132-4f91-a98b-3597c43c3366",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/ayrshare/delete-webhook",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "ayrshare",
+                "delete-webhook"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "2c540d25-e0b1-41ae-8110-5b54ed9b7426"
+    },
+    {
+      "name": "Project",
+      "item": [],
+      "id": "2a075436-5b4a-4c90-8c07-8813eff47074"
+    },
+    {
+      "name": "Dictionary",
+      "item": [
+        {
+          "name": "index",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d46b3fc2-0115-48e2-b9f0-ba434fac53a3",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "d8cef4a0-b148-4822-8073-293f6e2d65a2",
+                "exec": [
+                  "// Tests tab of POST /login",
+                  "const setCookie = pm.response.headers.get('Set-Cookie');",
+                  "",
+                  "if (setCookie) {",
+                  "    const match = setCookie.match(/automationtool_session=([^;]+)/);",
+                  "    if (match) {",
+                  "        pm.globals.set(\"automationtool_session\", match[1]);",
+                  "        console.log(\"Saved session cookie:\", match[1]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "184633ba-b924-4311-80be-32a88ea01443",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://:localhost:3000",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/dictionaries",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "dictionaries"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "37fddb37-1e40-4103-b12c-59d0cadd4096"
+    },
+    {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "index",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "cf921373-7531-4fb1-b3c4-1f7f4ce959ec",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "d7b8a350-03dd-410c-8ace-f31440d61930",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/api/roles",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "roles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "cf921373-7531-4fb1-b3c4-1f7f4ce959ec",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "2d45fbd0-8802-4bcf-8e81-ff946f93c7a6",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/api/roles/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "roles",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Permissions",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "cf921373-7531-4fb1-b3c4-1f7f4ce959ec",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "99ade95e-6907-4b80-b8b0-0323f2379a53",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/api/settings",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "settings"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "4266844b-763f-4a53-b88a-93e05d216002"
+    },
+    {
+      "name": "Permissions",
+      "item": [
+        {
+          "name": "index",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "cf921373-7531-4fb1-b3c4-1f7f4ce959ec",
+                "exec": [
+                  "// Pre-request Script of POST /login",
+                  "",
+                  "// CHANGE: Get the variable from the GLOBAL scope",
+                  "const token = pm.globals.get('current_xsrf_token');",
+                  "console.log(token);",
+                  "if (token) {",
+                  "    // Set the required header using the decoded token value",
+                  "    pm.request.headers.add({",
+                  "        key: 'X-XSRF-TOKEN',",
+                  "        value: token",
+                  "    });",
+                  "    console.log('✅ X-XSRF-TOKEN header set from GLOBAL variable.');",
+                  "} else {",
+                  "    console.error('❌ CSRF token variable is missing. Did you run /sanctum/csrf-cookie first?');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "712bed13-f041-4a6e-aa73-660763523cd9",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "http://localhost:3000",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/api/roles",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "roles"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "f9e57520-af26-4384-8998-dc22dca4355d"
+    },
+    {
+      "name": "Get content item",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "abb38468-bff9-4f60-b9ad-ae7b0f10c850",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "02215491-5ae7-4b9f-b258-0284cfce0f21",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"goal\": \"Create army shoe promodion video\",\n    \"benefits\": [\"Comfort for everyday wears\"]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}:80/api/campaigns/19//projects/14/content/15",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "port": "80",
+          "path": [
+            "api",
+            "campaigns",
+            "19",
+            "",
+            "projects",
+            "14",
+            "content",
+            "15"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "Get timeline status",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "abb38468-bff9-4f60-b9ad-ae7b0f10c850",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "id": "b2c8be4f-84db-4b31-a1a7-3754d8879591",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}:80/api/content/21/content-item-timelines/24/status",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "port": "80",
+          "path": [
+            "api",
+            "content",
+            "21",
+            "content-item-timelines",
+            "24",
+            "status"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "timeline upload",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "abb38468-bff9-4f60-b9ad-ae7b0f10c850",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "id": "737aff8f-6bcc-44ef-bfa6-52a1de3ef977",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "/Users/dmytro/Downloads/girls-8418210_1280.jpg"
+            },
+            {
+              "key": "asset type",
+              "value": "UPLOADED_IMAGE",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseURL}}:80/api/content/21/content-item-timelines/24/upload",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "port": "80",
+          "path": [
+            "api",
+            "content",
+            "21",
+            "content-item-timelines",
+            "24",
+            "upload"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "aa17f6a3-d658-4ac0-ade9-0180f24fac7c",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "ce817f20-5384-4f05-8c82-83c2bc0b1b4c",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "879c1e69-9b76-4108-97d6-46a0791d0a5e",
+      "key": "baseURL",
+      "value": ""
+    }
+  ]
+}

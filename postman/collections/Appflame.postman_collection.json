@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "c0b2ba28-2c15-41db-b421-7ea185eca13d",
+    "name": "Appflame",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "store",
+          "id": "2eb735ff-c820-4b8c-b02a-326d735ce262",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/events",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "events"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "e9048539-5d92-403a-a389-45e06aedd15f"
+    },
+    {
+      "name": "stats",
+      "item": [
+        {
+          "name": "today",
+          "id": "a514fca9-8609-428c-b95d-510e814bf7a2",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/stats/today",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "stats",
+                "today"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "fc11a759-7c98-4d09-af40-ec4b7c15e00b"
+    },
+    {
+      "name": "ping",
+      "id": "22fa959f-48b8-45cb-bb8a-1521ffb1f1be",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/test-auth",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "test-auth"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{api_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "c99aff64-b907-4450-8439-9b7264e0b8ea",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "4a438106-e936-4efa-82ab-e50766eab048",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "1e366cd2-6629-4643-8f16-39376520c42e",
+      "key": "api_token",
+      "value": ""
+    },
+    {
+      "id": "e6a4d7bb-34ac-419b-b130-afb49eaf2537",
+      "key": "base_url",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

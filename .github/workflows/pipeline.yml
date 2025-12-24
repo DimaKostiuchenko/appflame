@@ -6,13 +6,12 @@ on:
   pull_request:
     branches: [ "main" ]
 
-# Prevent multiple deployments from running at the same time
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  # --- JOB 1: BACKEND TESTS (SQLite) ---
+  # --- JOB 1: BACKEND TESTS ---
   backend-tests:
     runs-on: ubuntu-latest
     steps:
@@ -21,35 +20,25 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4' # Matches your FROM line
+          php-version: '8.4'
           extensions: mbstring, dom, fileinfo, sqlite3, pdo_sqlite
-
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Dependencies
         run: |
           cd backend
           composer install --prefer-dist --no-interaction --no-progress
+          cp .env.example .env
+          php artisan key:generate
 
-      - name: Prepare Database & Run Tests
+      - name: Run Tests
         env:
           DB_CONNECTION: sqlite
-          DB_DATABASE: ":memory:" # Fastest for CI
+          DB_DATABASE: ":memory:"
         run: |
           cd backend
-          cp .env.example .env
           php artisan test
 
-  # --- JOB 2: FRONTEND LINT/BUILD CHECK ---
+  # --- JOB 2: FRONTEND VALIDATION ---
   frontend-validation:
     runs-on: ubuntu-latest
     steps:
@@ -60,23 +49,23 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-          cache-dependency-path: './frontend/package-lock.json'
+          # FIXED: Path is relative to repo root, no ./ needed
+          cache-dependency-path: 'frontend/package-lock.json'
 
-      - name: Install Dependencies
+      - name: Install & Build Check
         run: |
           cd frontend
           npm ci
-
-      - name: Build Check (Nuxt)
-        run: |
-          cd frontend
           npm run build
 
-  # --- JOB 3: BUILD & PUSH (Only on Merge to Main) ---
+  # --- JOB 3: BUILD & PUSH (Only on Main) ---
   build-and-push:
     needs: [backend-tests, frontend-validation]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # Required to push to GHCR
     steps:
       - uses: actions/checkout@v4
 
@@ -87,6 +76,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # We build Backend first so Nginx can eventually "copy" from it if needed,
+      # but here we build them as individual images.
       - name: Build & Push Backend
         uses: docker/build-push-action@v5
         with:
@@ -103,7 +94,16 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}/frontend:latest
 
-  # --- JOB 4: DEPLOYMENT (Only on Merge to Main) ---
+      # NEW: Build & Push Nginx (Important for baking in static assets)
+      - name: Build & Push Nginx
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./nginx/Dockerfile
+          push: true
+          tags: ghcr.io/${{ github.repository }}/nginx:latest
+
+  # --- JOB 4: DEPLOYMENT ---
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
@@ -116,11 +116,18 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/my-app
-            # Pull latest images
+            
+            # Login to registry on the server to allow pulling private images
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            
+            # Pull the new images we just pushed
             docker compose -f docker-compose.prod.yml pull
-            # Restart containers with zero-downtime attempt
+            
+            # Restart services
             docker compose -f docker-compose.prod.yml up -d --remove-orphans
-            # Run post-deployment Laravel commands
+            
+            # Laravel Housekeeping
             docker exec laravel php artisan migrate --force
             docker exec laravel php artisan config:cache
             docker exec laravel php artisan route:cache
+            docker exec laravel php artisan view:cache
