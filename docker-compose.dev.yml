@@ -18,6 +18,7 @@ services:
     container_name: laravel
     volumes:
       - ./backend:/var/www # Syncs your local PHP code
+      - vendor:/var/www/vendor # Named volume for vendor (prevents overwrite)
     env_file:
       - ./backend/.env
     environment:
@@ -41,3 +42,4 @@ services:
      # - "3000:3000"
 volumes:
   nodemodules:
+  vendor:

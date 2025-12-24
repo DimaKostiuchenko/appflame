@@ -16,6 +16,16 @@ WORKDIR /var/www
 # STAGE 2: Development
 # ===============================
 FROM base AS development
+
+# Install Composer for dependency management
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Copy composer files and install dependencies
+# This ensures vendor is available even when code is mounted as volume
+# --no-scripts skips post-install scripts that require artisan (which isn't copied yet)
+COPY composer.json composer.lock ./
+RUN composer install --no-interaction --prefer-dist --no-scripts
+
 # In Dev, we mount the code via volumes, so we just run the process.
 CMD ["php-fpm"]
 
