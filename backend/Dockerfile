@@ -3,9 +3,6 @@
 # ===============================
 FROM php:8.4-fpm-alpine AS base
 
-# Install only system dependencies for mbstring
-# pdo_mysql usually has no extra dependencies in this Alpine image
-# Optimized for SQLite + Laravel 11/12
 RUN apk add --no-cache \
     oniguruma-dev \
     sqlite-dev \
@@ -19,29 +16,8 @@ WORKDIR /var/www
 # STAGE 2: Development
 # ===============================
 FROM base AS development
-
-# Install Composer for dependency management
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-# Create entrypoint script to install dependencies if needed
-RUN echo '#!/bin/sh' > /entrypoint.sh && \
-    echo 'set -e' >> /entrypoint.sh && \
-    echo 'if [ ! -d "vendor" ] && [ -f "composer.json" ]; then' >> /entrypoint.sh && \
-    echo '  echo "Installing Composer dependencies..."' >> /entrypoint.sh && \
-    echo '  composer install --no-interaction || true' >> /entrypoint.sh && \
-    echo 'fi' >> /entrypoint.sh && \
-    echo 'if [ ! -f "database/database.sqlite" ]; then' >> /entrypoint.sh && \
-    echo '  echo "Creating SQLite database file..."' >> /entrypoint.sh && \
-    echo '  mkdir -p database' >> /entrypoint.sh && \
-    echo '  touch database/database.sqlite' >> /entrypoint.sh && \
-    echo '  chmod 664 database/database.sqlite' >> /entrypoint.sh && \
-    echo 'fi' >> /entrypoint.sh && \
-    echo 'exec php-fpm' >> /entrypoint.sh && \
-    chmod +x /entrypoint.sh
-
-# We don't COPY code here because we use Volumes in docker-compose.yml 
-# for real-time local development.
-ENTRYPOINT ["/entrypoint.sh"]
+# In Dev, we mount the code via volumes, so we just run the process.
+CMD ["php-fpm"]
 
 # ===============================
 # STAGE 3: Vendor (Build Helper)
@@ -49,9 +25,9 @@ ENTRYPOINT ["/entrypoint.sh"]
 FROM composer:2 AS vendor
 WORKDIR /app
 
-# Copy only composer files first to leverage Docker layer caching
+# We only install the code-base dependencies here
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --no-dev --no-scripts --no-autoloader --no-interaction
 
 # ===============================
 # STAGE 4: Production Runtime
@@ -65,15 +41,24 @@ COPY --from=vendor /app/vendor ./vendor
 # 2. Copy the actual application code
 COPY . .
 
-# 3. Set up directory permissions for Laravel
+# 3. FIX: Regenerate Autoloader
+# This maps your App/ namespaces to the vendor folder
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+RUN composer dump-autoload --optimize --no-dev
+
+# 4. Set up directory permissions
 RUN mkdir -p storage/framework/{sessions,views,cache} \
     && chown -R www-data:www-data storage bootstrap/cache
 
-# 4. Production optimizations
-# Note: These are safe here because this stage is only triggered by the production target
+# 5. FIX: Production optimizations (MOCKING THE DB)
+# We use :memory: so Laravel doesn't look for a physical file during the build.
+# We use a dummy APP_KEY so the config can be encrypted/cached.
 RUN php artisan config:cache \
     && php artisan route:cache \
-    && php artisan view:cache
+    && php artisan view:cache \
+    env APP_KEY=base64:$(openssl rand -base64 32) \
+    DB_CONNECTION=sqlite \
+    DB_DATABASE=:memory: 
 
 EXPOSE 9000
 CMD ["php-fpm"]
