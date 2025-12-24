@@ -42,12 +42,15 @@ Clone project
 ```
 Git clone git@github.com:DimaKostiuchenko/appflame.git
 ```
+```
+cd appflame
+```
 
 Create env and build containers
 ```
 cp frontend/.env.example frontend/.env &&
 cp backend/.env.example backend/.env &&
-docker-compose -f docker-compose.dev.yml up --build
+docker compose -f docker-compose.dev.yml up --build -d
 ```
 
 Run migrations
