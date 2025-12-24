@@ -21,13 +21,20 @@
 
 <script setup lang="ts">
 interface Props {
-  counts: {
+  counts?: {
     page_view: number
     cta_click: number
     form_submit: number
   }
-  total: number
+  total?: number
 }
 
-defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  counts: () => ({
+    page_view: 0,
+    cta_click: 0,
+    form_submit: 0,
+  }),
+  total: 0,
+})
 </script>
